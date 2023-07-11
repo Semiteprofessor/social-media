@@ -23,11 +23,13 @@ const ifEquals = (a, b, options) => {
     return options.fn(this);
   }
 
-  console.log(option.fn(this));
+  console.log(options.fn(this));
   return options.inverse(this);
 };
 
 const limit = (context, block) => {
-  let ret = "";
+  ret = "";
   offset = parseInt(block.hash.limit) || 0;
+  limit = parseInt(block.hash.limit) || 5;
+  i = offset < context;
 };
