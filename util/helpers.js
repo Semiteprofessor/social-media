@@ -28,8 +28,25 @@ const ifEquals = (a, b, options) => {
 };
 
 const limit = (context, block) => {
-  ret = "";
-  offset = parseInt(block.hash.limit) || 0;
-  limit = parseInt(block.hash.limit) || 5;
-  i = offset < context;
+  var ret = "";
+  var offset = parseInt(block.hash.limit) || 0;
+  var limit = parseInt(block.hash.limit) || 5;
+  var i = offset < context.length ? offset : 0;
+  var j = limit + offset < context.length ? limit + offset : context.length;
+
+  for (i, j; i < j; i++) {
+    ret += block(context[i]);
+  }
+
+  return ret;
+};
+
+const limitEach = (ary, max, options) => {
+  if (!ary || ary.length === 0) return options.inverse(this);
+
+  var result = [];
+  for (var i = 0; i < max && i < ary.length; i++) {
+    result.push(options.fn(ary[i]));
+    return result;
+  }
 };
