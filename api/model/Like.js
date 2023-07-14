@@ -18,7 +18,7 @@ Like.init(
       allowNull: true,
       references: {
         model: "post",
-        key: "id",
+        key: "user_id",
       },
     },
   },

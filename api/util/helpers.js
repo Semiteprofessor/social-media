@@ -47,6 +47,20 @@ const limitEach = (ary, max, options) => {
   var result = [];
   for (var i = 0; i < max && i < ary.length; i++) {
     result.push(options.fn(ary[i]));
-    return result;
+    return result.join("");
   }
+};
+
+const urlCompiler = (str, query) => {
+  return (recompiled =
+    str.split(/upload/)[0] + `upload/${query}` + str.split(/upload/)[1]);
+};
+
+module.exports = {
+  formatTime,
+  postTime,
+  ifEquals,
+  limit,
+  limitEach,
+  urlCompiler,
 };

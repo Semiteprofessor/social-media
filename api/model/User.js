@@ -7,11 +7,19 @@ class User extends Model {}
 
 User.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
+    user_id: {
+      type: DataTypes.UUID,
       allowNull: true,
       primaryKey: true,
       autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    othernames: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     username: {
       type: DataTypes.STRING,
@@ -34,10 +42,6 @@ User.init(
     },
     image: {
       type: DataTypes.STRING,
-    },
-    occupation: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     about_me: {
       type: DataTypes.STRING,
@@ -67,5 +71,7 @@ User.init(
     modelName: "user",
   }
 );
+
+User.removeAttribute("id");
 
 module.exports = User;
