@@ -81,8 +81,8 @@ const getSinglePost = async (req, res) => {
       postsData.followers.filter(
         (fil) => fil.user_id === req.session.user.user_id
       ).length > 0;
-    res.render("singlwPost", {
-      title: "Lego Posts",
+    res.render("singlePost", {
+      title: "Single Posts",
       postsData: [postsData],
       signedIn: req.session.loggedIn,
       loggedOut: !req.session.loggedIn,
@@ -100,6 +100,16 @@ const feed = async (req, res, next) => {
     return redirect("/login");
   }
   try {
+    const allFeeds = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ["password", "email"],
+          },
+        },
+      ],
+    });
   } catch (error) {}
 };
 
